@@ -93,7 +93,7 @@ left lane (lateral component) while accelerating (longitudinal component)" or "K
 human-driving behaviour.
 
 ### The reference trajectory on the highway map
-The highway map data is provided in the file `data/highway_map.csv`. The highway has 6 lanes
+The highway map data is provided in the file [`data/highway_map.csv`][Data]. The highway has 6 lanes
 in total, each being 4 meters wide, and 3 lanes heading in each direction. The highway track
 is described by a list of 181 waypoints, which define a loop of approximately 6946 meters 
 length. The waypoints represent the center line of the road which separates the lanes into 
@@ -675,12 +675,12 @@ with the minimum cost is passed to the controller on the next stage.
 
 A [`Trajectory`][Trajectory] class is implemented in [`src/vehicles.cpp`][vehiclescpp] for 
 the definition of the composite trajectories. The class provides the methods 
-[`Trajectory::update`] [trajupdate] for the waypoint computation and feasibility checks and 
+[`Trajectory::update`][trajupdate] for the waypoint computation and feasibility checks and 
 [`Trajectory::check_collision`][trajcollision] for the collision checks. The ego vehicle
 attribute `EgoVehicle::trajectory` is always the most current composite trajectory, and it is 
 updated at each replanning cycle. 
 
-The first composite trajectory is initialized by [`EgoVehicle::init_trajectory`] [init] right 
+The first composite trajectory is initialized by [`EgoVehicle::init_trajectory`][init] right 
 after connecting to the simulator. 
 
 ```c++
@@ -732,7 +732,7 @@ void EgoVehicle::init_trajectory() {
 ```
 
 At each replanning cycle the optimal trajectory is updated by 
-[`EgoVehicle::update_trajectory`] [update]
+[`EgoVehicle::update_trajectory`][update]
 
 
 ```c++
@@ -802,7 +802,7 @@ void EgoVehicle::update_trajectory(int num_consumed_wpts) {
 
 The method makes use of [`EgoVehicle::get_optimal_trajectory`][getopt] to determine the 
 optimal trajectory of all the possible successor states and 
-[`EgoVehicle::get_best_candidate`] [getcand] to determine the best trajectory candidate of 
+[`EgoVehicle::get_best_candidate`][getcand] to determine the best trajectory candidate of 
 each successor state. 
 
 ## Stage 4: The Motion Control
@@ -909,6 +909,7 @@ Robots and Systems, Tsukuba, Japan*, 1989
 
 [Final]: videos/3_Final_4x_480.gif "Full lap"
 
+[Data]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/data/highway_map.csv
 [Map]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/map.cpp#L11
 [mapcpp]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/map.cpp
 [getss]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/vehicles.cpp#L337
