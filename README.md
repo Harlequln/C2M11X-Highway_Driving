@@ -117,11 +117,11 @@ of the trajectory candidates is expressed as a time dependent function of the co
 length ***s(t)*** at the center line, and the point's perpendicular offset ***d(t)*** from 
 the center line.
 
-The augmentation of the map data is accomplished by the `Map` class defined in `src/map.cpp`. 
-This class also provides methods for the conversions between Frenet and global coordinates 
-and for the computation of the center line's curvature at a specific location. The latter 
-is required to determine the global velocity of the ego vehicle. More details on these 
-transformations can be found in [[1]](#references).
+The augmentation of the map data is accomplished by the [`Map`][Map] class defined in 
+[`src/map.cpp`][mapcpp]. This class also provides methods for the conversions between Frenet
+and global coordinates and for the computation of the center line's curvature at a specific
+location. The latter is required to determine the global velocity of the ego vehicle. More
+details on these transformations can be found in [[1]](#references).
 
 ```c++
 /** Highway map class. 
@@ -205,11 +205,11 @@ distance.
 
 ![][LonFSM]
 
-The presented finite state machines are implemented in the method ``EgoVehicle::get_successor_states``.
-This method returns a vector of ``Successor`` state objects, of which each defines a viable
-composite maneuver. A composite maneuver is the combination of a lateral and a longitudinal 
-maneuver. For example, ``Successor(LAT:KEEP, LON:FOLLOW)`` defines a successor state to *keep 
-the lane and follow the leading vehicle*. 
+The presented finite state machines are implemented in the method [`EgoVehicle::get_successor_states`][getss]. 
+This method returns a vector of [`Successor`][Successor] state objects, of which each 
+defines a viable composite maneuver. A composite maneuver is the combination of a lateral 
+and a longitudinal maneuver. For example, `Successor(LAT:KEEP, LON:FOLLOW)` defines a 
+successor state to *keep the lane and follow the leading vehicle*. 
 
 ```c++
 /** Determine the possible successor states. 
@@ -314,8 +314,8 @@ proposed by the behavioural level. Thereby, in a first step, the motion planning
 performed separately for the lateral and longitudinal movement, both described by polynomials
 defined in the Frenet space. In a subsequent step the lateral and longitudinal polynomials 
 will be combined to composite trajectories, describing the global movement of the ego vehicle.
-For the definition of the required quintics and quartics, a ``Polynomial`` class is 
-implemented in ``src/polynomials.cpp``.
+For the definition of the required quintics and quartics, a [`Polynomial`][Polynomial] class 
+is implemented in [`src/polynomials.cpp`][polycpp].
 ```c++
 /** Create a jerk minimal trajectory by solving a quintic or quartic polynomial. 
  * 
@@ -366,12 +366,12 @@ Polynomial::Polynomial(const std::vector<double> start,
 
 This class comes with several methods, which amongst others are:
 
-- `` Polynomial::solve_quintic`` / ``Polynomial::solve_quartic`` to solve the linear system
-  of equations and determine the polynomial's coefficients. These methods are called 
-  automatically at the Polynomial's initialization.
-- ``Polynomial::evaluate`` to compute the discrete trajectory waypoints in the Frenet frame 
-  and perform first feasibility checks
-- ``Polynomial::compute_cost`` to determine the polynomial's cost
+- [`Polynomial::solve_quintic`][polyquintic] / [`Polynomial::solve_quartic`][polyquartic] to 
+  solve the linear system of equations and determine the polynomial's coefficients. These 
+  methods are called automatically at the Polynomial's initialization.
+- [`Polynomial::evaluate`][polyeval] to compute the discrete trajectory waypoints in the 
+  Frenet frame and perform first feasibility checks
+- [`Polynomial::compute_cost`][polycost] to determine the polynomial's cost
 
 ### Generation of the lateral movement
 The lateral maneuvers proposed by the behaviour planner involve *lane keeping* and *lane 
@@ -380,7 +380,7 @@ generated. To avoid discontinuities in the transition from the previous trajecto
 updated candidates, the start state *D<sub>0</sub>* of the candidates will be shifted 0.5 
 seconds into the future. The ego vehicle will follow the previous trajectory up to this 
 point. Since the simulator expects a waypoint every *&Delta;t*=20ms, the transition time 
-interval corresponds to ``NUM_TRANSITION_WPTS = 25`` waypoints. Each polynomial candidate 
+interval corresponds to `NUM_TRANSITION_WPTS = 25` waypoints. Each polynomial candidate 
 will have the same start state
 
 ![][Lat0]
@@ -416,7 +416,7 @@ The following table summarizes the context.
 ![][LatTab]
 
 The generation of the lateral trajectory sets is performed by the method 
-``EgoVehicle::get_d_polys``
+[`EgoVehicle::get_d_polys`][getdpolys]
 
 ```c++
 /** Create a set of lateral polynomials. 
@@ -454,7 +454,7 @@ vector<Polynomial> EgoVehicle::get_d_polys(
 ```
 
 The computation of the lane cost term *C<sub>lane</sub>* is perfomed by the method 
-``EgoVehicle::get_lane_cost``
+[`EgoVehicle::get_lane_cost`][getlanecost]
 
 ```c++
 /** Compute a lane cost depending on the closeness of the surrounding vehicles. 
@@ -473,7 +473,7 @@ The behaviour planner provides longitudinal maneuvers to *keep the velocity*, *f
 leading vehicle or *fallback*, if the ego vehicle is trapped between adjacent vehicles. For
 each of these maneuvers we need to determine the boundary conditions required to generate the
 polynomial candidates. As with the lateral movement, the start state *S<sub>0</sub>* will be 
-defined ``NUM_TRANSITION_WPTS = 25`` in the future, in order to achieve a smooth transition 
+defined `NUM_TRANSITION_WPTS = 25` in the future, in order to achieve a smooth transition 
 from the previous trajectory into the new candidates, .
 
 ![][Lon0]
@@ -573,7 +573,7 @@ The following table summarizes the context.
 ![][LonTab]
 
 The generation of the longitudinal trajectory sets is performed by the method 
-``EgoVehicle::get_s_polys``
+[`EgoVehicle::get_s_polys`][getspolys]
 
 ```c++
 /** Create a set of longitudinal polynomials. 
@@ -647,22 +647,22 @@ the computational effort, the polynomials with excessively high jerks or acceler
 relative to the road were already sorted out in the generation step. 
 
 As for the collision determination, a simple circle-to-circle collision check is performed. 
-Three circles define each vehicle's contour. As computational efficient as the constant
-velocity prediction model is, it shows its issues here. Since it only considers the movement
-of the other vehicles along the road, their lane changes can not be predicted by it. This is
-a hazard to the ego vehicle. We will therefore consider possible lane changes in a different
-manner: If the vehicle is not near the center of its current lane, it could be about to 
-change the lane. Conservatively, it will be treated as like being in both its current and 
-the nearest adjacent lane. Of course, this is also a very basic approach. There are many 
-other prediction models out there, e.g., data driven approaches or multi-modal estimators.
-However, this is also an area of active research and beyond the scope of this project. 
+Three circles define each vehicle's contour. The simple constant velocity prediction model 
+shows its issues here. Since it only considers the movement of the other vehicles along the 
+road, their lane changes can not be predicted by it. This is a hazard to the ego vehicle. We
+will therefore consider possible lane changes in a different manner: If the vehicle is not 
+near the center of its current lane, it could be about to change the lane. Conservatively, it
+will be treated as like being in both its current and the nearest adjacent lane. Of course, 
+this is also a very basic approach. There are many other prediction models out there, e.g., 
+data driven approaches or multi-modal estimators. However, the integration of an advanced 
+prediction model is beyond the scope of this project. 
 
 There may be cases in which no feasible or collision free trajectory could be determined.
-Then, the ego vehicle switches from the ``SCN::STANDARD`` into the ``SCN::RECOVERY`` mode.
+Then, the ego vehicle switches from the `SCN::STANDARD` into the `SCN::RECOVERY` mode.
 The same process is repeated with eased feasibility constraints: safety before comfort. If
-still no viable trajectory could be found, the ``SCN::EMERGENCY`` mode gets active. The
+still no viable trajectory could be found, the `SCN::EMERGENCY` mode gets active. The
 feasibility constraints are further eased, and the hierarchical zero/one collision check is
-replaced by a cost based approach. It may be better to have a trajectory with a *controlled*
+replaced by a cost based approach. It may be better to have a trajectory with a controlled
 collision, than no trajectory at all. To assure, that the potential collision has as low an
 impact as possible, the trajectory cost increases with each collision event, taking into
 account the degree of overlap, and the velocity difference of the involved vehicles.
@@ -673,55 +673,137 @@ with the minimum cost is passed to the controller on the next stage.
 
 ![][TrajectoryCost]
 
-For the defintion of the composite trajectories, a ``Trajectory`` class is implemented in 
-``src/vehicles.cpp``.  
+A [`Trajectory`][Trajectory] class is implemented in [`src/vehicles.cpp`][vehiclescpp] for 
+the definition of the composite trajectories. The class provides the methods 
+[`Trajectory::update`] [trajupdate] for the waypoint computation and feasibility checks and 
+[`Trajectory::check_collision`][trajcollision] for the collision checks. The ego vehicle
+attribute `EgoVehicle::trajectory` is always the most current composite trajectory, and it is 
+updated at each replanning cycle. 
+
+The first composite trajectory is initialized by [`EgoVehicle::init_trajectory`] [init] right 
+after connecting to the simulator. 
 
 ```c++
-/** Initialize a trajectory by its polynomial components.
+/** Initialize the ego vehicle's trajectory at the beginning of the simulation. 
  * 
- * The longitudinal and lateral polynomials are used to compute the 
- * trajectory's waypoints in the Frenet and global systems. 
+ * The starting state is the initial ego vehicle's position without movement: 
  * 
- * @param s_poly: longitudinal s polynomial 
- * @param d_poly: longitudinal d polynomial 
- * @param map: highway map class
+ *    s_start = {s_init, 0, 0} 
+ *    d_start = {d_init, 0, 0} 
+ * 
+ * The end state is the longitudinal velocity limit while keeping the starting lane: 
+ * 
+ *    s_end = {s_vel_limit, 0} 
+ *    d_end = {d_init, 0, 0} 
+ * 
+ * The initial maneveur has a duration T of 4 sec to achieve a smooth start: 
+ * 
+ *    T = 4
+ * 
+ * However, the initialized trajectory will be updated in the first replaning 
+ * cycle anyway. 
  */
-Trajectory::Trajectory(Polynomial s_poly, Polynomial d_poly, Map &map)
+void EgoVehicle::init_trajectory() {
+
+  // Definition of the boundary states at start and end
+  vector<double> s_start{this->s_pos, 0, 0};
+  vector<double> d_start{this->d_pos, 0, 0};
+  vector<double> s_end{this->s_vel_limit, 0};
+  vector<double> d_end{this->d_pos, 0, 0};
+  double T = 4;
+
+  // Initialize the longitudinal (quartic) and lateral (quintic) trajectories 
+  Polynomial s_quartic, d_quintic;
+  s_quartic = Polynomial(s_start, s_end, T, DEG::QUARTIC, FRE::S);
+  d_quintic = Polynomial(d_start, d_end, T, DEG::QUINTIC, FRE::D);
+
+  // Compute the polynomial costs
+  s_quartic.compute_cost();
+  d_quintic.compute_cost(this->d_pos, this->lane_cost);
+
+  // Compute discrete waypoints for the polynomials in Frenet space
+  // The initial polynomials are evaluated for the complete planning horizon
+  s_quartic.evaluate(NUM_TRAJECTORY_WPTS);
+  d_quintic.evaluate(NUM_TRAJECTORY_WPTS);
+  
+  // Initialize the vehicles's composite trajectory and its waypoints
+  this->trajectory = Trajectory(s_quartic, d_quintic, this->map);
+}
 ```
 
-The class provides the methods ``Trajectory::update`` and ``Trajectory::check_collision``
+At each replanning cycle the optimal trajectory is updated by 
+[`EgoVehicle::update_trajectory`] [update]
+
 
 ```c++
-/** Update trajectory with new polynomials and recompute its waypoints. 
+/** Update the trajectory based on the current simulator data. 
  * 
- * The consumed waypoints of the current trajectory will be removed. The 
- * remaining waypoints will be kept up to the transition point in the future. 
- * From there on the new polynomial trajectory waypoints will be integrated.
- * The global trajectory is checked for its feasibility.
+ * The replaning will take place in the moment the simulator has consumed  
+ * num_consumed_wpts > REPLAN_THRESHOLD waypoints. Since the computation of 
+ * the updated trajectory will take some time in which the vehicle will keep 
+ * moving and consuming waypoints, the starting state of the updated trajectory 
+ * will be defined a few timesteps in the future. This will allow a smooth 
+ * transition from the current to the updated trajectory. 
  * 
- * @param s_poly: longitudinal s polynomial 
- * @param d_poly: longitudinal d polynomial 
- * @param num_consumed_wpts: number of already consumed trajectroy waypoints
- * @param map: highway map class
- * @param scenario: driving scenario case (standard, recovery or emergency)
+ * @param num_consumed_wpts: number of consumed waypoints up to now  
  */
-void Trajectory::update(Polynomial s_poly, Polynomial d_poly,
-                        int num_consumed_wpts, Map &map, int scenario)
+void EgoVehicle::update_trajectory(int num_consumed_wpts) {
+  
+  // Define polynomial starting states
+  // The update of the trajectory polynomials will begin NUM_TRANSITION_WPTS 
+  // in the future, starting to count from the first waypoint not jet consumed 
+  // when the replaning began. 
+  int starting_wpt = num_consumed_wpts + NUM_TRANSITION_WPTS;
+  vector<double> s_start{
+    this->trajectory.s_pos_wpts[starting_wpt],
+    this->trajectory.s_vel_wpts[starting_wpt],
+    this->trajectory.s_acc_wpts[starting_wpt]};
+  vector<double> d_start{
+    this->trajectory.d_pos_wpts[starting_wpt],
+    this->trajectory.d_vel_wpts[starting_wpt],
+    this->trajectory.d_acc_wpts[starting_wpt]};
+
+  // Initialize the optimal trajectory as empty trajectory
+  Trajectory optimal_trajectory;
+
+  // Determine the possible successors states
+  vector<Successor> successors = get_successor_states();
+
+  // Standard driving scenario: 
+  // Determine the optimal trajectory out of all successor state trajectories
+  optimal_trajectory = get_optimal_trajectory(
+    s_start, d_start, successors, num_consumed_wpts, SCN::STANDARD);
+
+  // Recovery driving scenario:
+  // If for some reason (collisions/feasibility) no optimal trajectory could be 
+  // generated, try to recover the state with eased feasibility constraints
+  if (optimal_trajectory.is_empty) {
+    optimal_trajectory = get_optimal_trajectory(
+      s_start, d_start, successors, num_consumed_wpts, SCN::RECOVERY);
+  }
+
+  // Emergency driving scenario:
+  // If the recovery was not successful, start an emergency maneuver. The 
+  // feasibility constraints are eased and the collision check is cost based 
+  // instead of a hierarchical zero/one decision.
+  if (optimal_trajectory.is_empty) {
+    optimal_trajectory = get_optimal_trajectory(
+      s_start, d_start, successors, num_consumed_wpts, SCN::EMERGENCY);
+  }
+
+  if (!optimal_trajectory.is_empty) {
+    // Replace the current trajectory by the new optimal one
+    this->trajectory = optimal_trajectory;
+  } else {
+    printf("No optimal trajectory available. \n");
+  }
+}
 ```
 
-```c++
-/** Check the trajectory for collisions with the nearby vehicles. 
- * 
- * Simple circle-to-circle collision check with three circles defining the 
- * vehicle contour. The ego vehicles circles are shifted somewhat to the 
- * front to provide an additional safety buffer. 
- * 
- * @param nearby_vehicles: the nearby vehicles (1D vector)
- * @param scenario: driving scenario case (standard, recovery or emergency)
- */
-void Trajectory::check_collision(vector<Vehicle> &nearby_vehicles,
-                                 Map &map, int scenario)
-```
+The method makes use of [`EgoVehicle::get_optimal_trajectory`][getopt] to determine the 
+optimal trajectory of all the possible successor states and 
+[`EgoVehicle::get_best_candidate`] [getcand] to determine the best trajectory candidate of 
+each successor state. 
 
 ## Stage 4: The Motion Control
 On the last stage, the vehicle controller is responsible for the execution of the optimal 
@@ -735,8 +817,8 @@ need to evaluate the jerk-minimal trajectories in time steps of *&Delta;t=20ms*.
 ![][Controller]
 
 The evaluation and feasibility checks in the Frenet system are performed by the method
-``Polynomial::evaluate``, and the composition and transformation into the global 
-system by ``Trajectory::update``.
+[`Polynomial::evaluate`][polyeval], and the composition and transformation into the global 
+system by [`Trajectory::update`][trajupdate].
 
 ## Results
 The following snippets give an insight on how the algorithm works in the simulator.
@@ -826,6 +908,28 @@ Robots and Systems, Tsukuba, Japan*, 1989
 [Eff7]: videos/merging_birdseye_2_2x_480.gif "Efficient Driving"
 
 [Final]: videos/3_Final_4x_480.gif "Full lap"
+
+[Map]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/map.cpp#L11
+[mapcpp]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/map.cpp
+[getss]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/vehicles.cpp#L337
+[Successor]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/vehicles.h#L77
+[polycpp]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/polynomials.cpp
+[Polynomial]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/polynomials.cpp#L11
+[polyquintic]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/polynomials.cpp#L192
+[polyquartic]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/polynomials.cpp#L221
+[polyeval]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/polynomials.cpp#L69
+[polycost]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/polynomials.cpp#L251
+[getdpolys]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/vehicles.cpp#L648
+[getspolys]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/vehicles.cpp#L730
+[getlanecost]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/vehicles.cpp#L1084
+[vehiclescpp]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/vehicles.cpp
+[init]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/vehicles.cpp#L158
+[update]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/vehicles.cpp#L205
+[getopt]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/vehicles.cpp#L486
+[getcand]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/vehicles.cpp#L589
+[Trajectory]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/vehicles.cpp#L1360
+[trajupdate]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/vehicles.cpp#L1418
+[trajcollision]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/vehicles.cpp#L1523
 
 [Optimal]: https://www.researchgate.net/publication/224156269_Optimal_Trajectory_Generation_for_Dynamic_Street_Scenarios_in_a_Frenet_Frame
 [Course]: https://www.udacity.com/course/self-driving-car-engineer-nanodegree--nd013

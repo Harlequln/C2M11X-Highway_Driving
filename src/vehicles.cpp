@@ -155,7 +155,7 @@ void EgoVehicle::update_state(double x_pos, double y_pos,
 }
 
 
-/** Initialize the ego vehicles trajectory at the beginning of the simulation. 
+/** Initialize the ego vehicle's trajectory at the beginning of the simulation. 
  * 
  * The starting state is the initial ego vehicle's position without movement: 
  * 
@@ -300,7 +300,7 @@ void EgoVehicle::update_trajectory(int num_consumed_wpts) {
   // Emergency driving scenario:
   // If the recovery was not successful, start an emergency maneuver. The 
   // feasibility constraints are eased and the collision check is cost based 
-  // instead of absolute.
+  // instead of a hierarchical zero/one decision.
   if (optimal_trajectory.is_empty) {
     printf("Creating emergency trajectory.\n");
     optimal_trajectory = get_optimal_trajectory(
