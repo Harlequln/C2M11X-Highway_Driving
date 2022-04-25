@@ -1,4 +1,4 @@
-This project is part of Udacity's [Self-Driving-Car Nanodegree][Course]. The project 
+**This project is part of Udacity's [Self-Driving-Car Nanodegree][Course]. The project 
 resources and build instructions can be found [here][Project], the simulator 
 [here][Simulator].
 
@@ -822,6 +822,7 @@ system by [`Trajectory::update`][trajupdate].
 The following snippets give an insight on how the algorithm works in the simulator.
 
 ### Snippets
+
 | Collision Avoidance | Maneuver Selection | 	
 | ---------- | -------------|  	
 | ![][Col3] | ![][Eff7] |
@@ -936,4 +937,4 @@ Robots and Systems, Tsukuba, Japan*, 1989
 [Simulator]: https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2
 [Diss]: https://www.ksp.kit.edu/site/books/m/10.5445/KSP/1000021738/
 [Local]: https://ieeexplore.ieee.org/document/637936
-[Solve]: https://www.youtube.com/watch?v=EkB1su_3gh8
+[Solve]: https://www.youtube.com/watch?v=EkB1su_3gh8**
