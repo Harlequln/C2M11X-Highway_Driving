@@ -1,4 +1,4 @@
-**This project is part of Udacity's [Self-Driving-Car Nanodegree][Course]. The project 
+This project is part of Udacity's [Self-Driving-Car Nanodegree][Course]. The project 
 resources and build instructions can be found [here][Project], the simulator 
 [here][Simulator].
 
