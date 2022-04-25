@@ -1,8 +1,10 @@
-# Highway Driving
-Highway path planning with jerk minimized trajectories.
+This project is part of Udacity's [Self-Driving-Car Nanodegree][Course]. The project 
+resources and build instructions can be found [here][Project], the simulator 
+[here][Simulator].
+
+## Highway path planning with jerk minimized trajectories.
 
 ![][Prequel]
-
 
 Implementation of a path planning algorithm for the navigation of an autonomous vehicle on a 
 highway, satisfying safety, feasibility and comfort boundary conditions. Amongst others these 
@@ -13,10 +15,6 @@ are:
   (10 m/s³, 10 m/s²)
 - efficient maneuver selection, such as to change lanes in order to pass a slower moving car 
 - avoid collisions under all circumstances
-
-This project is part of Udacity's [Self-Driving-Car Nanodegree][Course]. The project 
-description and build instructions can be found [here][Project], the simulator 
-[here][Simulator].
 
 In this approach to the project we will implement the method presented in 
 [Optimal Trajectory Generation for Dynamic Street Scenarios in a Frenet Frame][Optimal].
@@ -850,64 +848,64 @@ motion control for AGV in positioning. *IEEE/RSJ International Workshop on Intel
 Robots and Systems, Tsukuba, Japan*, 1989
 
 
-[Prequel]: videos/1_Final_Prequel_2x_640.gif "Prequel"
+[Prequel]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/1_Final_Prequel_2x_640.gif "Prequel"
 
-[Planning]: images/Planning.png "Planning hierarchy"
-[Frenet]: images/Frenet_480.png "Frenet"
-[Waypoints]: images/Waypoints_360.png "Waypoints"
-[Track]: images/track.png "Track"
-[FSM]: images/FSM.png "Finite State Machines"
-[LatFSM]: images/Lateral.png "Lateral FSM"
-[LonFSM]: images/Longitudinal.png "Longitudinal FSM"
-[Functional]: images/cost_functional.png "Cost funtional"
-[Euler]: images/Euler.png "Euler Lagrange"
-[Differential]: images/Differential.png "Differential"
-[Quintic]: images/Quintic.png "Quintic polynomial"
-[QuinticDerivatives]: images/QuinticDeriv.png "Quintic polynomial derivatives"
-[QuinticBC]: images/Quintic_BC.png "Boundary states"
-[Quartic]: images/Quartic.png "Quartic polynomial"
-[QuarticBC]: images/Quartic_BC.png "Boundary states"
-[Lat0]: images/Lat0.png "Lateral start state"
-[LatVar]: images/LatVariation.png "Lateral parameter variation"
-[LatLocVar]: images/LatLocVar.png "Lateral end location variation"
-[LatTraj]: images/Trajectory_600.png "Trajectory Generation"
-[LatCost]: images/LatCost.png "Lateral cost functional"
-[LatTab]: images/LatTab.png "Lateral polynomials summary"
-[Lon0]: images/Lon0.png "Longitudinal start state"
-[LonQuarticVar]: images/LonQuarticVar.png "Parameter variation"
-[LonQuarticVelVar]: images/LonQuarticVelVar.png "End velocity variation"
-[LonQuarticTargVel]: images/LonQuarticTargetVel.png "Target velocity"
-[LonQuarticCost]: images/LonQuarticCost.png "Keep velocity cost functional"
-[LonQuinticLeadVelAcc]: images/LonQuinticLeadVelAcc.png "Leading vehicle velocity/acceleration"
-[LonQuinticVar]: images/LonQuinticVar.png "Parameter variation"
-[LonQuinticPosVar]: images/LonQuinticPosVar.png "End position variation"
-[LonQuinticFollowTargPos]: images/LonQuinticFollowTargPos.png "Follow target position"
-[LonQuinticFallbackTargPos]: images/LonQuinticFallbackTargPos.png "Fallback target position"
-[LonQuinticSafetyDist]: images/LonQuinticSafetyDist.png "Safety distance"
-[LonQuinticLeadPos]: images/LonQuinticLeadPos.png "Leading vehicle position"
-[LonQuinticFollowTargVel]: images/LonQuinticFollowTargVel.png "Follow target velocity"
-[LonQuinticFallbackTargVel]: images/LonQuinticFallbackTargVel.png "Fallback target velocity"
-[LonQuinticCost]: images/LonQuinticCost.png "Follow cost functional"
-[LonTab]: images/LonTab.png "Longitudinal polynomials summary"
-[TrajectoryCost]: images/TrajectoryCost.png "Composite trajectory cost"
-[Controller]: images/Controller.png "Waypoint determination"
+[Planning]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Planning.png "Planning hierarchy"
+[Frenet]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Frenet_480.png "Frenet"
+[Waypoints]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Waypoints_360.png "Waypoints"
+[Track]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/track.png "Track"
+[FSM]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/FSM.png "Finite State Machines"
+[LatFSM]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Lateral.png "Lateral FSM"
+[LonFSM]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Longitudinal.png "Longitudinal FSM"
+[Functional]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/cost_functional.png "Cost funtional"
+[Euler]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Euler.png "Euler Lagrange"
+[Differential]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Differential.png "Differential"
+[Quintic]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Quintic.png "Quintic polynomial"
+[QuinticDerivatives]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/QuinticDeriv.png "Quintic polynomial derivatives"
+[QuinticBC]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Quintic_BC.png "Boundary states"
+[Quartic]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Quartic.png "Quartic polynomial"
+[QuarticBC]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Quartic_BC.png "Boundary states"
+[Lat0]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Lat0.png "Lateral start state"
+[LatVar]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LatVariation.png "Lateral parameter variation"
+[LatLocVar]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LatLocVar.png "Lateral end location variation"
+[LatTraj]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Trajectory_600.png "Trajectory Generation"
+[LatCost]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LatCost.png "Lateral cost functional"
+[LatTab]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LatTab.png "Lateral polynomials summary"
+[Lon0]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Lon0.png "Longitudinal start state"
+[LonQuarticVar]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonQuarticVar.png "Parameter variation"
+[LonQuarticVelVar]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonQuarticVelVar.png "End velocity variation"
+[LonQuarticTargVel]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonQuarticTargetVel.png "Target velocity"
+[LonQuarticCost]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonQuarticCost.png "Keep velocity cost functional"
+[LonQuinticLeadVelAcc]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonQuinticLeadVelAcc.png "Leading vehicle velocity/acceleration"
+[LonQuinticVar]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonQuinticVar.png "Parameter variation"
+[LonQuinticPosVar]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonQuinticPosVar.png "End position variation"
+[LonQuinticFollowTargPos]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonQuinticFollowTargPos.png "Follow target position"
+[LonQuinticFallbackTargPos]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonQuinticFallbackTargPos.png "Fallback target position"
+[LonQuinticSafetyDist]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonQuinticSafetyDist.png "Safety distance"
+[LonQuinticLeadPos]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonQuinticLeadPos.png "Leading vehicle position"
+[LonQuinticFollowTargVel]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonQuinticFollowTargVel.png "Follow target velocity"
+[LonQuinticFallbackTargVel]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonQuinticFallbackTargVel.png "Fallback target velocity"
+[LonQuinticCost]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonQuinticCost.png "Follow cost functional"
+[LonTab]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/LonTab.png "Longitudinal polynomials summary"
+[TrajectoryCost]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/TrajectoryCost.png "Composite trajectory cost"
+[Controller]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Controller.png "Waypoint determination"
 
-[Col1]: videos/collision_avoidance_1_2x_480.gif "Collision Avoidance"
-[Col2]: videos/collision_avoidance_2_2x_480.gif "Collision Avoidance"
-[Col3]: videos/collision_avoidance_3_2x_480.gif "Collision Avoidance"
-[Col4]: videos/collision_avoidance_4_2x_480.gif "Collision Avoidance"
-[Col5]: videos/collision_avoidance_5_2x_480.gif "Collision Avoidance"
-[Col6]: videos/collision_avoidance_6_2x_480.gif "Collision Avoidance"
-[Col7]: videos/collision_avoidance_7_2x_480.gif "Collision Avoidance"
-[Eff1]: videos/Deadlock_3x_480.gif "Efficient Driving"
-[Eff2]: videos/jam_navigation_2x_480.gif "Efficient Driving"
-[Eff3]: videos/jam_navigation_birdseye_2x_480.gif "Efficient Driving"
-[Eff4]: videos/merging_2x_480.gif "Efficient Driving"
-[Eff5]: videos/merging_2_2x_480.gif "Efficient Driving"
-[Eff6]: videos/merging_birdseye_2x_480.gif "Efficient Driving"
-[Eff7]: videos/merging_birdseye_2_2x_480.gif "Efficient Driving"
+[Col1]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/collision_avoidance_1_2x_480.gif "Collision Avoidance"
+[Col2]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/collision_avoidance_2_2x_480.gif "Collision Avoidance"
+[Col3]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/collision_avoidance_3_2x_480.gif "Collision Avoidance"
+[Col4]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/collision_avoidance_4_2x_480.gif "Collision Avoidance"
+[Col5]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/collision_avoidance_5_2x_480.gif "Collision Avoidance"
+[Col6]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/collision_avoidance_6_2x_480.gif "Collision Avoidance"
+[Col7]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/collision_avoidance_7_2x_480.gif "Collision Avoidance"
+[Eff1]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/Deadlock_3x_480.gif "Efficient Driving"
+[Eff2]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/jam_navigation_2x_480.gif "Efficient Driving"
+[Eff3]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/jam_navigation_birdseye_2x_480.gif "Efficient Driving"
+[Eff4]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/merging_2x_480.gif "Efficient Driving"
+[Eff5]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/merging_2_2x_480.gif "Efficient Driving"
+[Eff6]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/merging_birdseye_2x_480.gif "Efficient Driving"
+[Eff7]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/merging_birdseye_2_2x_480.gif "Efficient Driving"
 
-[Final]: videos/3_Final_4x_480.gif "Full lap"
+[Final]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/3_Final_4x_480.gif "Full lap"
 
 [Data]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/data/highway_map.csv
 [Map]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/map.cpp#L11
