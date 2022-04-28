@@ -1,8 +1,8 @@
 This project is part of Udacity's [Self-Driving-Car Nanodegree][Course]. The project 
-resources and build instructions can be found [here][Project], the simulator 
+resources and build instructions can be found [here][Project], the required simulator 
 [here][Simulator].
 
-## Highway path planning with jerk minimized trajectories.
+## Highway path planning with jerk minimized trajectories
 
 ![][Prequel]
 
@@ -849,7 +849,7 @@ motion control for AGV in positioning. *IEEE/RSJ International Workshop on Intel
 Robots and Systems, Tsukuba, Japan*, 1989
 
 
-[Prequel]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/1_Final_Prequel_2x_640.gif "Prequel"
+[Prequel]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/1_Final_Prequel_2x_480.gif "Prequel"
 
 [Planning]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Planning.png "Planning hierarchy"
 [Frenet]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/images/Frenet_480.png "Frenet"
@@ -906,7 +906,7 @@ Robots and Systems, Tsukuba, Japan*, 1989
 [Eff6]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/merging_birdseye_2x_480.gif "Efficient Driving"
 [Eff7]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/merging_birdseye_2_2x_480.gif "Efficient Driving"
 
-[Final]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/3_Final_4x_480.gif "Full lap"
+[Final]: https://github.com/pabaq/CarND-Highway-Driving/raw/main/videos/3_Final_4x_480_lq.gif "Full lap"
 
 [Data]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/data/highway_map.csv
 [Map]: https://github.com/Harlequln/C2M11X-Highway_Driving/blob/main/src/map.cpp#L11
