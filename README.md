@@ -2,7 +2,7 @@ This project is part of Udacity's [Self-Driving-Car Nanodegree][Course]. The pro
 resources and build instructions can be found [here][Project], the required simulator 
 [here][Simulator].
 
-## Highway path planning with jerk minimized trajectories
+## Driving with minimum-jerk trajectories
 
 ![][Prequel]
 
@@ -90,7 +90,7 @@ left lane (lateral component) while accelerating (longitudinal component)" or "K
 (lateral) while following the leading vehicle (longitudinal)". This, in someway, mimics 
 human-driving behaviour.
 
-### The reference trajectory on the highway map
+### The reference trajectory 
 The highway map data is provided in the file [`data/highway_map.csv`][Data]. The highway has 6 lanes
 in total, each being 4 meters wide, and 3 lanes heading in each direction. The highway track
 is described by a list of 181 waypoints, which define a loop of approximately 6946 meters 
@@ -371,7 +371,7 @@ This class comes with several methods, which amongst others are:
   Frenet frame and perform first feasibility checks
 - [`Polynomial::compute_cost`][polycost] to determine the polynomial's cost
 
-### Generation of the lateral movement
+### Lateral movement
 The lateral maneuvers proposed by the behaviour planner involve *lane keeping* and *lane 
 changing*. For each of these maneuvers a set of lateral polynomial candidates will be 
 generated. To avoid discontinuities in the transition from the previous trajectory into the 
@@ -466,7 +466,7 @@ The computation of the lane cost term *C<sub>lane</sub>* is perfomed by the meth
 vector<double> EgoVehicle::get_lane_cost()
 ``` 
 
-### Generation of the longitudinal movement
+### Longitudinal movement
 The behaviour planner provides longitudinal maneuvers to *keep the velocity*, *follow* the 
 leading vehicle or *fallback*, if the ego vehicle is trapped between adjacent vehicles. For
 each of these maneuvers we need to determine the boundary conditions required to generate the
@@ -637,7 +637,7 @@ vector<Polynomial> EgoVehicle::get_s_polys(
   int scenario)
 ```
 
-### Generation of the global movement
+### Global movement
 Having determined the lateral and longitudinal trajectory sets, they need to be combined to 
 composite trajectories. These are transformed back from the Frenet into the global system, 
 where they are checked for their physical feasibility and for collisions. In order to reduce 
